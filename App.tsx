@@ -5,12 +5,20 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 
-import EditProfileView from './src/components/EditProfileView';
+import EditProfileView from './src/components/views/EditProfileView';
+import {UserProfile} from './src/models/UserProfile';
+import {ProfileView} from './src/components/views/ProfileView';
 
 function App(): JSX.Element {
-  return <EditProfileView />;
+  const [user, setUser] = useState<UserProfile | null>(null);
+
+  return user ? (
+    <ProfileView user={user} setUser={setUser} />
+  ) : (
+    <EditProfileView setUser={setUser} />
+  );
 }
 
 export default App;
